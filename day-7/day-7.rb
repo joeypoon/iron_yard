@@ -52,6 +52,7 @@ class PlayerChoice < Choice
   private
 
     def get_player_choice
+      puts
       puts "Rock, Paper, or Scissors?"
       @player_choice = gets.chomp.capitalize
       while !(@available_choices.include? @player_choice)
@@ -72,13 +73,23 @@ class RandomChoice < Choice
 end
 
 class Game
-  def play
-    @player_choice = PlayerChoice.new.player_choice
-    @computer_choice = RandomChoice.new.random_choice
-    display_results
+  def should_play
+    puts
+    puts "Play a game of Rock, Paper, Scissors? (y/n)"
+    action = gets.chomp.downcase
+    if action == 'y'
+      play
+      should_play
+    end
   end
 
   private
+
+    def play
+      @player_choice = PlayerChoice.new.player_choice
+      @computer_choice = RandomChoice.new.random_choice
+      display_results
+    end
 
     def check_choices
       if @player_choice.type == @computer_choice.type
@@ -97,7 +108,7 @@ class Game
 end
 
 game = Game.new
-game.play
+game.should_play
 
 # Extreme Mode
 #
@@ -106,15 +117,25 @@ game.play
 # # Track who which choice wins the most often
 
 class SimulateGame < Game
+  def should_run_sim
+    puts
+    puts "Run simulation? (y/n)"
+    action = gets.chomp.downcase
+    if action == 'y'
+      puts
+      puts "Please enter number of times to run simulation: "
+      number = gets.chomp.to_i
+      simulate number
+      should_run_sim
+    end
+  end
 
-  def initialize
+  private
+
+  def simulate number=1000
     @comp1wins = 0
     @comp2wins = 0
     @ties = 0
-    super
-  end
-
-  def simulate number=1000
     while number > 0
       @player_choice = RandomChoice.new.random_choice
       @computer_choice = RandomChoice.new.random_choice
@@ -123,8 +144,6 @@ class SimulateGame < Game
     end
     display_results
   end
-
-  private
 
   def check_choices
     if @player_choice.type == @computer_choice.type
@@ -144,15 +163,5 @@ class SimulateGame < Game
   end
 end
 
-puts
-puts "Run simulation? (y/n)"
-action = gets.chomp.downcase
-
-if action == 'y'
-  puts
-  puts "Please enter number of times to run simulation: "
-  number = gets.chomp.to_i
-  simulation = SimulateGame.new
-  simulation.simulate number
-  puts
-end
+simulation = SimulateGame.new
+simulation.should_run_sim
