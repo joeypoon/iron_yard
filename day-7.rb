@@ -23,6 +23,7 @@
 # Scissors beats Paper
 
 class Game
+
   def initialize
     @choices = {
       Rock: {beat_paper: false, beat_scissors: true},
@@ -65,7 +66,7 @@ class Game
 
     def display_results
       puts
-      puts "    * Player: #{@player_choice.to_s} vs Computer: #{@computer_choice.to_s} ----- #{check_choices}"
+      puts "* Player: #{@player_choice.to_s} vs Computer: #{@computer_choice.to_s} ----- #{check_choices}"
     end
 end
 
@@ -118,9 +119,9 @@ class SimulateGame < Game
 
   def display_results
     puts
-    puts "    * Computer 1: #{@comp1wins} wins
-    * Computer 2: #{@comp2wins} wins
-    * Ties: #{@ties}"
+    puts "* Computer 1: #{@comp1wins} wins"
+    puts "* Computer 2: #{@comp2wins} wins"
+    puts "* Ties: #{@ties}"
   end
 end
 
@@ -134,4 +135,5 @@ if action == 'y'
   number = gets.chomp.to_i
   simulation = SimulateGame.new
   simulation.simulate number
+  puts
 end
