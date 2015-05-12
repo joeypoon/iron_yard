@@ -22,8 +22,73 @@
 # Paper beats Rock
 # Scissors beats Paper
 
-class Game
+require 'minitest/autorun'
 
+class Rock
+  attr_reader :beat_paper, :beat_scissors
+
+  def initialize
+    @beat_paper = false
+    @beat_scissors = true
+  end
+end
+
+class Scissors
+  attr_reader :beat_rock, :beat_paper
+
+  def initialize
+    @beat_rock = false
+    @beat_paper = true
+  end
+end
+
+class Paper
+  attr_reader :beat_rock, :beat_scissors
+
+  def initialize
+    @beat_rock = true
+    @beat_scissors = false
+  end
+end
+
+class Choice
+  def initialize
+    @available_choices = %w(Rock Paper Scissors)
+    @choices = { Rock: Rock.new, Scissors: Scissors.new, Paper: Paper.new }
+  end
+end
+
+class PlayerChoice < Choice
+  attr_reader :player_choice
+
+  def initialize
+    super
+    get_player_choice
+  end
+
+  private
+
+    def get_player_choice
+      puts "Rock, Paper, or Scissors?"
+      @player_choice = gets.chomp.capitalize
+      while !(@available_choices.include? @player_choice)
+        puts "What are you doing? This is Rock, Paper, Scissors! Try again!"
+        @player_choice = gets.chomp.capitalize
+      end
+      @player_choice = @choices[@player_choice.to_sym]
+    end
+end
+
+class RandomChoice < Choice
+  attr_reader :random_choice
+
+  def initialize
+    super
+    @random_choice = @choices[@available_choices.to_a.sample.to_sym]
+  end
+end
+
+class Game
   def initialize
     @choices = {
       Rock: {beat_paper: false, beat_scissors: true},
@@ -70,8 +135,8 @@ class Game
     end
 end
 
-game = Game.new
-game.play
+# game = Game.new
+# game.play
 
 # Extreme Mode
 #
@@ -125,15 +190,32 @@ class SimulateGame < Game
   end
 end
 
-puts
-puts "Run simulation? (y/n)"
-action = gets.chomp.downcase
+###Tests
 
-if action == 'y'
-  puts
-  puts "Please enter number of times to run simulation: "
-  number = gets.chomp.to_i
-  simulation = SimulateGame.new
-  simulation.simulate number
-  puts
-end
+# class TestGame < Minitest::Test
+#   def setup
+#     @game = Game.new
+#   end
+#
+#   def test_computer_choice
+#     assert_equal true, (@available_choices.include? @game.computer_choice)
+#   end
+# end
+#
+# class TestSimulation < Minitest::Test
+# end
+
+###Tests
+
+# puts
+# puts "Run simulation? (y/n)"
+# action = gets.chomp.downcase
+#
+# if action == 'y'
+#   puts
+#   puts "Please enter number of times to run simulation: "
+#   number = gets.chomp.to_i
+#   simulation = SimulateGame.new
+#   simulation.simulate number
+#   puts
+# end
