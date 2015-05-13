@@ -26,7 +26,11 @@ class Person
   end
 
   def same_as?(receiver)
-    @first_name == receiver.first_name
+    full_name == receiver.full_name
+  end
+
+  def full_name
+    "#{@first_name} #{@last_name}"
   end
 end
 
@@ -41,30 +45,29 @@ class SecretSanta
 
   def pick_person
     @people.each do |person|
-      @to_receive.shuffle! while person.same_as?(@to_receive.first)
-      break if @to_receive.count == 3 #prevent last person from being assigned to self
-      person.santa_for = (@to_receive.shift)
+      if last_giving_self?(person)
+        rerun
+      else
+        @to_receive.shuffle! while person.same_as?(@to_receive.first)
+        person.santa_for = (@to_receive.shift)
+      end
     end
-    final_three
   end
 
   def display_santas
     @people.each do |person|
-      puts "#{person.first_name} => #{person.santa_for.first_name}"
+      puts "#{person.full_name} => #{person.santa_for.full_name}"
     end
   end
 
   private
 
-    def final_three
-      i = 3
-      while i > 0
-        @people[@people.count - i].santa_for = @to_receive.pop
-        i -= 1
-      end
+    def rerun
+      initialize("text.txt")
+      pick_person
     end
 
-    def is_last_receiver_self?
+    def last_giving_self? person
       @to_receive.count == 1 && person.same_as?(@to_receive.first)
     end
 
