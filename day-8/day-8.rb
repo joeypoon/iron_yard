@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 # Homework
 #
 # Credit: the "I" here is the awesome "James Edward Gray, II". From Ruby Quiz #2
@@ -22,6 +24,10 @@ class Person
     @first_name = array[0]
     @last_name = array[1]
   end
+
+  def same_as?(receiver)
+    @first_name == receiver.first_name
+  end
 end
 
 class SecretSanta
@@ -29,21 +35,17 @@ class SecretSanta
 
   def initialize file_name
     @people = []
-    @santas = []
+    @to_receive = []
     parse_file file_name
   end
 
   def pick_person
     @people.each do |person|
-      while person.first_name == @santas.first.first_name
-        @santas.shuffle!
-      end
-      person.santa_for = @santas.shift
-      if @santas.count == 1 && last_element_same?
-        @santas = @people.dup.shuffle!
-        pick_person
-      end
+      @to_receive.shuffle! while person.same_as?(@to_receive.first)
+      break if @to_receive.count == 3 #prevent last person from being assigned to self
+      person.santa_for = (@to_receive.shift)
     end
+    final_three
   end
 
   def display_santas
@@ -54,17 +56,24 @@ class SecretSanta
 
   private
 
-  def last_element_same?
-    @santas.last.first_name == @people.last.first_name
-  end
+    def final_three
+      i = 3
+      while i > 0
+        @people[@people.count - i].santa_for = @to_receive.pop
+        i -= 1
+      end
+    end
+
+    def is_last_receiver_self?
+      @to_receive.count == 1 && person.same_as?(@to_receive.first)
+    end
 
     def parse_file file_name
       File.readlines("./#{file_name}").each do |line|
         person = Person.new(line.split(' '))
         @people << person
-        @santas << person.dup
+        @to_receive << person.dup
       end
-      @santas.shuffle!
     end
 end
 
