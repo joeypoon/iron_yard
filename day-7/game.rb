@@ -13,12 +13,20 @@ class Game
     end
   end
 
+  def play
+    get_player_choice
+    get_computer_choice
+    display_results
+  end
+
   private
 
-    def play
+    def get_player_choice
       @player_choice = PlayerChoice.new.player_choice
+    end
+
+    def get_computer_choice
       @computer_choice = RandomChoice.new.random_choice
-      display_results
     end
 
     def check_choices
