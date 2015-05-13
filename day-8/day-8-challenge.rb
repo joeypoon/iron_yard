@@ -10,11 +10,7 @@
 
 class String
   def palindrome?
-    if self == self.reverse
-      true
-    else
-      false
-    end
+    self == self.reverse
   end
 end
 
@@ -32,20 +28,34 @@ puts "abba".palindrome? # true
 # else
 #   puts "nay"
 # end
+# 
+# def fizzbuzz
+#   i = 1
+#   while i <= 100
+#     if i % 3 == 0 && i % 5 == 0
+#       puts "FizzBuzz"
+#     elsif i % 5 == 0
+#       puts "Buzz"
+#     elsif i % 3 == 0
+#       puts "Fizz"
+#     else
+#       puts i
+#     end
+#     i += 1
+#   end
+# end
 
 def fizzbuzz
-  i = 1
-  while i <= 100
-    if i % 3 == 0 && i % 5 == 0
+  (1..100).each do |number|
+    if number % 3 == 0 && number % 5 == 0
       puts "FizzBuzz"
-    elsif i % 5 == 0
+    elsif number % 5 == 0
       puts "Buzz"
-    elsif i % 3 == 0
+    elsif number % 3 == 0
       puts "Fizz"
     else
-      puts i
+      puts number
     end
-    i += 1
   end
 end
 
