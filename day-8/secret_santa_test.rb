@@ -7,13 +7,13 @@ class SecretSantaTest < Minitest::Test
   end
 
   def test_loads_file
-    assert_equal true, @secret_santa.people.count == 7
+    assert_equal 7, @secret_santa.people.count
   end
 
   def test_people_have_santa
     @secret_santa.pick_person
     @secret_santa.people.each do |person|
-      assert_equal true, person.santa_for.class == Person
+      assert_equal Person, person.santa_for.class
     end
   end
 
