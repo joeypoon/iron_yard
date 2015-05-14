@@ -20,3 +20,36 @@
 # Step 2: 8+4+2+7+2+2+6+4+1+0+6+1+4+8+1+8+1+2+2 = 69
 # Step 3: 69 % 10 != 0
 # Your thing to to: create a class that returns if a card is valid or not
+
+class CreditCardChecker
+  def check_valid number
+    @card_number = number.gsub(' ', '').reverse.chars.map { |n| n.to_i }
+    double_digits
+    divisible_by_10?
+  end
+
+  private
+    def double_digits
+      i = 1
+      while i < @card_number.length
+        @card_number[i] *= 2
+        i += 2
+      end
+    end
+
+    def sum_digits
+      @card_number.join.chars.map { |n| n.to_i }.reduce(:+)
+    end
+
+    def divisible_by_10?
+      if sum_digits % 10 == 0
+        "Valid"
+      else
+        "Not Valid"
+      end
+    end
+end
+
+checker = CreditCardChecker.new
+puts checker.check_valid("4408 0412 3456 7893") #valid
+puts checker.check_valid("4417 1234 5678 9112") #not valid
