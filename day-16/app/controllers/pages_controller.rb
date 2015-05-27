@@ -1,4 +1,19 @@
 class PagesController < ApplicationController
-  def hello
+
+  before_action do
+    @animals = ['goat', 'cat', 'dog']
   end
+
+  def index
+  end
+
+  def goat
+  end
+
+  def cat
+  end
+
+  def dog
+  end
+
 end

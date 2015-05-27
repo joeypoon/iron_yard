@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
-  get 'pages/hello'
+
+  root 'pages#index'
+
+  get '/goat' => 'pages#goat', as: 'goat'
+
+  get '/cat' => 'pages#cat', as: 'cat'
+
+  get '/dog' => 'pages#dog', as: 'dog'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

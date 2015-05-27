@@ -1,3 +1,40 @@
 // Place all the styles related to the pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+body {
+  margin-bottom: 3em;
+}
+
+.content {
+  margin-top: 2em;
+}
+
+nav {
+  font-size: 1.2em;
+
+  ul {
+    padding-top: 1em;
+    padding-bottom: .5em;
+    list-style: none;
+
+    li {
+      color: white;
+      padding-right: 2em;
+      display: inline;
+
+      a {
+        color: white;
+      }
+
+      a:visited {
+        color: white;
+      }
+
+      a:hover {
+        color: white;
+        text-decoration: none;
+      }
+    }
+  }
+}

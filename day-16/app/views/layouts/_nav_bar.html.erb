@@ -1,0 +1,15 @@
+<nav class="nav navbar-inverse">
+
+  <ul>
+
+    <li><%= link_to 'Home', root_path %></li>
+
+    <%= @animals.each do |animal| %>
+
+      <li><%= link_to animal.capitalize, animal %></li>
+
+    <% end %>
+
+  </ul>
+
+</nav>
