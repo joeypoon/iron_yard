@@ -1,0 +1,69 @@
+create table cities (
+  place_name VARCHAR(50),
+  estimates_2013 integer,
+  census_2010 integer,
+  change_percent decimal);
+
+insert into cities (
+  place_name,
+  estimates_2013,
+  census_2010,
+  change_percent
+  ) values (
+  'Houston',
+  2195914,
+  2100263,
+  04.55
+  );
+
+insert into cities (
+  place_name,
+  estimates_2013,
+  census_2010,
+  change_percent
+  ) values (
+  'San Antonio',
+  1409019,
+  1327407,
+  6.15
+  );
+
+insert into cities (
+  place_name,
+  estimates_2013,
+  census_2010,
+  change_percent
+  ) values (
+  'Dallas',
+  1257676,
+  1197816,
+  5.00
+  );
+
+insert into cities (
+  place_name,
+  estimates_2013,
+  census_2010,
+  change_percent
+  ) values (
+  'Austin',
+  885400,
+  790390,
+  12.02
+  );
+
+insert into cities (
+  place_name,
+  estimates_2013,
+  census_2010,
+  change_percent
+  ) values (
+  'Fort Worth',
+  792727,
+  741206,
+  6.95
+  );
+
+select * from cities;
+select * from cities order by change_percent desc limit 1;
+delete from cities where place_name = 'Dallas';
