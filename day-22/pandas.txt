@@ -1,0 +1,12 @@
+create table pandas (
+  id serial,
+  name varchar (30),
+  gender char(1),
+  zoo varchar (50),
+  weight decimal,
+  personality text,
+  created_at timestamp,
+  updated_at timestamp);
+
+select * from pandas order by weight where gender = 'M' desc limit 1
+select * from pandas order by weight where gender = 'F' desc limit 1
