@@ -1,6 +1,9 @@
 <ul>
   <% @posts.each do |post| %>
     <li><%= link_to post.title, post %></li>
+    <p>Published on: <%= post.published_on %></p>
     <p><%= truncate_post post.body %></p>
   <% end %>
 </ul>
+
+<%= link_to 'New Post', new_post_path %>

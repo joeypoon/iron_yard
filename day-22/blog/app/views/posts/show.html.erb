@@ -1,0 +1,7 @@
+<%= link_to 'Home', root_path %>
+
+<h1><%= @post.title %></h1>
+<h3>Published on: <%= @post.published_on %></h3>
+<p><%= @post.body %></p>
+
+<%= link_to 'Edit', edit_post_path %>
