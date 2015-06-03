@@ -12,6 +12,8 @@ Rails.application.routes.draw do
 
   patch 'posts/:id' => 'posts#update'
 
+  delete 'posts/:id' => 'posts#delete'
+
   # get 'orders/new' => 'orders#new', as: :new_order
   # post 'orders' => 'orders#create', as: :orders
   # get 'orders/:id' => 'orders#show', as: :order
