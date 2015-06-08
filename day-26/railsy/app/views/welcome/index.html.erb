@@ -1,0 +1,7 @@
+<% @photos.each do |photo| %>
+
+  <div class="col-xs-6 col-md-4">
+    <%= image_tag photo.photo_url, class: "img-responsive img-thumbnail"%>
+  </div>
+
+<% end %>
