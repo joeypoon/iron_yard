@@ -1,0 +1,13 @@
+<div class="container">
+  
+  <%= render 'layouts/form' %>
+
+  <% @thoughts.each do |thought| %>
+
+    <hr>
+    <%= thought.content %>
+    <hr>
+
+  <% end %>
+
+</div>
