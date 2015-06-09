@@ -10,17 +10,18 @@
 
   <div class="container">
 
+    <%= render 'layouts/nav' %>
+
     <% if notice %>
-      <div class="notice"><%= notice %></div>
+      <div class="alert alert-success"><%= notice %></div>
     <% end %>
 
     <% if alert %>
-      <div class="alert"><%= alert %></div>
+      <div class="alert alert-danger"><%= alert %></div>
     <% end %>
 
-    <%= render 'layouts/nav' %>
-
     <%= yield %>
+    
   </div>
 
 </body>
