@@ -2,6 +2,7 @@ class PhotosController < ApplicationController
 
   before_action do
     @photos = Photo.all.order('created_at desc').page(params[:page])
+    authenticate_user
   end
 
   def index
