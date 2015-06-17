@@ -33,10 +33,6 @@ console.log(joey);
 
 //
 // Use Underscore for below
-//
-// *  Use `_.each` to loop through the array of objects and log only one property of the hash. For example { title: "Gone with the Wind" } loop through and print only the .title
-// * Create an array of movies with budgets equal to 55 (where)
-// * Create an array of movies that have Leonardo DiCaprio as a star (filter)
 
 var movies = [
   {
@@ -70,3 +66,30 @@ var movies = [
    "stars": ["Mike Myers", "Cameron Diaz"]
   }
 ]
+
+//
+// *  Use `_.each` to loop through the array of objects and log only one property of the hash. For example { title: "Gone with the Wind" } loop through and print only the .title
+
+_.each(movies, function(movie) {
+  console.log(movie.title);
+});
+
+// * Create an array of movies with budgets equal to 55 (where)
+
+var cheapMovies = _.where(movies, { "budget": 55 });
+
+_.each(cheapMovies, function(movie) {
+  console.log(movie);
+});
+
+// * Create an array of movies that have Leonardo DiCaprio as a star (filter)
+
+var hasLeonardo = _.filter(movies, function(movie) {
+  if (_.contains(movie.stars, "Leonardo DiCaprio")) {
+    return movie;
+  }
+});
+
+_.each(hasLeonardo, function(movie) {
+  console.log(movie);
+});
