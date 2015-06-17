@@ -28,7 +28,7 @@ var joey = {
   "lastName": "Poon",
   "age": 25,
   "city": "Houston"
-}
+};
 console.log(joey);
 
 //
@@ -65,7 +65,7 @@ var movies = [
    "budget": 160,
    "stars": ["Mike Myers", "Cameron Diaz"]
   }
-]
+];
 
 //
 // *  Use `_.each` to loop through the array of objects and log only one property of the hash. For example { title: "Gone with the Wind" } loop through and print only the .title
