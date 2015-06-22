@@ -1,0 +1,15 @@
+<ul class="list-group" style="margin-top: 3em;">
+  <% @filtered_array.each do |item| %>
+
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= item[:title] %></h3>
+      </div>
+      <div class="panel-body">
+        <%= image_tag "#{item[:image]}", class: 'img-responsive img-rounded pull-left', style: 'margin-right: 2em;' %>
+        <h3 style="margin-top:2em;"><%= item[:price] %></h3>
+      </div>
+    </div>
+
+  <% end %>
+</ul>
